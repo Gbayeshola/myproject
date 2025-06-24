@@ -9,3 +9,9 @@ Adidas US sales Analysis with Excel.
 This report provides a detailed analysis of the Adidas US sales data for the years 2020 and 2021. The primary dataset contains transactional sales records across various retailers, regions, and product categories. The total revenue generated during this period was approximately $899.76 million, with a total operating profit of $339.69 million, yielding an average operating margin of about 37.8%.
 The analysis reveals that West Gear was the top-performing retailer by a significant margin in both revenue and profit. The most lucrative product category is Men's Street Footwear, which is the highest-selling product across most retailers. Sales are distributed across three methods: In-store, Online, and Outlet, with In-store and Online sales showing the highest profitability. The West region emerges as the most significant market, contributing the largest share of both sales and profit.
 
+HR Dataset on power bi with visualization.
+I making using of card chart for the analysis of the total monthly income,average monthly rate,total monthly income and number of employees.
+donut chart is used to visulize the count of attrition by education field while attrition by years at company is visualize using line chart, attrition by age group and job role visualize by bar chart and table respectively.
+filter and slicer is used for gender, marital status and department
+
+
