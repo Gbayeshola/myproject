@@ -14,4 +14,136 @@ I making using of card chart for the analysis of the total monthly income,averag
 donut chart is used to visulize the count of attrition by education field while attrition by years at company is visualize using line chart, attrition by age group and job role visualize by bar chart and table respectively.
 filter and slicer is used for gender, marital status and department
 
+                    My project for ai_job on python
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_csv("ai_job_dataset.csv")
+df.head(5)
+df.info()
+df.describe()
+df.isnull().sum()
+#min salary range
+min_salary= df['salary_usd']
+#max salary range
+max_salary = df['salary_usd']
+#What are the top 10 most common AI job titles? 
+top_job_titles = df['job_title'].value_counts().head(10)
+#What cities/locations post the most AI jobs?
+top_company_location = df['company_location'].value_counts().head(10)
+#What are the most in-demand skills?
+most_in_demand_skills = df['required_skills'].value_counts().head(10)
+#What's the average salary by job title or experience level?
+average_salary_by_job_title= df.groupby('job_title')['salary_usd'].mean().sort_values(ascending=False).head(10)
+#What is the most common job type (e.g., remote, full-time)?
+most_common_job_type= df['employment_type'].value_counts()
+#what are the unique ai job titles?
+df.job_title.nunique()
+#What is the average benefits score?
+average_benefits_score #what is the most common experience level?
+most_common_experience_level= df['experience_level'].value_counts()= df['benefits_score'].mean()
+#what is the distribution of education requirements?
+education_requirements_distribution= df['education_required'].value_counts()
+#what percentage of jobs are fully remote (remote_ratio =100)?
+print(((df['remote_ratio'] == 100).sum() / df.shape[0]) * 100)
+#what is the average salary by company size?
+average_salary_by_company_size = df.groupby('company_size')['salary_usd'].mean()
+#what job titles have the widest salary range?
+widest_salary_range_by_job_titles= df.groupby('job_title')['salary_usd'].max()
+#what are the locations offering remote jobs?
+top_remote_locations_jobs= df[df['remote_ratio'] == 100]['company_location'].value_counts().head(10)
+#which countries have the highest average job description length?
+average_description_length = df.groupby('company_location')['job_description_length'].mean().sort_values(ascending=False).head(10)
+#what industries require the longest job description?
+average_description_length_by_industry = df.groupby('industry')['job_description_length'].mean().sort_values(ascending=False).head(10)
+#what is the trend of postings by month(from posting_date)
+df['posting_date'] = pd.to_datetime(df['posting_date'])
+#is there a correlation between benefits score and salary?
+correlation = df['benefits_score'].corr(df['salary_usd'])
+#which companies are hiring the most ai professionals?
+print(df['company_name'].value_counts().head(10))
+#which companies are hiring the most ai professionals?
+print(df['company_name'].value_counts().head(10))
+#Are ai job postings increasing each year?
+year= df['posting_date'].dt.year
+#how many unique combinations of job title and location existed?
+unique_combination= df[['job_title', 'company_location']].drop_duplicates().shape[0]
+#how does the average salary differ across various experience levels(e.g., Entry-level, Mid-level,senior)
+average_salary_by_exerience = df.groupby('experience_level')['salary_usd'].mean()
+#what is the relationshp between job type and experience level(e.g., are internerships mostly entry-level)?
+relationship_between_employment_type_and_experience_level = pd.crosstab(df['employment_type'],df['experience_level'])
+#what is the overall medain salary across all job postings?
+df['salary_usd'] = pd.to_numeric(df['salary_usd'], errors='coerce')
+#which ai job titles are declining?
+df['year_experience'] = df['posting_date'].dt.year
+#Are salaries increasing over time?
+average_salary_per_year = df.groupby('posting_date')['salary_usd'].mean()
+#what is the salary range per job title?
+df[['job_title', 'salary_usd']].groupby('job_title').describe()
+#how does remote ratio vary by job title?
+df.groupby('job_title')['remote_ratio'].mean().sort_values().head(10)
+#what degrees are most sought after is ai job postings?
+#what is the average salary for ai roles?
+print(df['salary_usd'].dropna().mean())
+#what skills are unique to NLP roles?
+nlp_skills = df[df['job_title'].str.lower() == 'nlp engineer']['required_skills'].dropna(
+#what ai roles are common in startups vs large firms?
+df.groupby('company_size')['job_title'].value_counts().unstack().fillna(0).head()
+#What insights can be gained by analyzing the relationship between job_description_length and application_deadline duration?
+df['application_deadline'] = pd.to_datetime(df['application_deadline'], errors='coerce')
+df.dropna(subset=['application_deadline', 'posting_date'], inplace=True)
+#How do remote_ratio and employee_residence relate to salary expectations?
+salary_by_remote_residence = df.groupby(['remote_ratio', 'employee_residence'])['salary_usd'].mean().sort_values(ascending=False)
+#Bar charts (e.g., job counts by title)
+job_title_counts = df['job_title'].value_counts().nlargest(5)
+plt.figure(figsize=(8, 5))
+plt.bar(job_title_counts.index, job_title_counts.values, color=['orange', 'green', 'blue', 'red'])
+plt.title('Job Titles by Count')
+plt.xlabel('Job Title')
+plt.ylabel('count')
+plt.xticks(rotation=45)
+plt.show()
+#Pie chart or horizontal bar (e.g., job distribution by city?
+company_location_by_job_distribution = df['company_location'].value_counts()
+plt.figure(figsize=(8, 8))
+plt.pie(company_location_by_job_distribution.values, labels=company_location_by_job_distribution.index, autopct='%1.1f%%')
+plt.title('distribution by company location')
+plt.show()
+#Line plot (remote ratio) ETC
+plt.figure(figsize=(8,3))
+plt.plot(remote.index,remote.values,marker = 'o', color= 'blue')
+plt.title('remote rating')
+plt.xlabel('remote')
+plt.show()
+AI Job Market Analysis Report
+This report summarizes the key findings from the analysis of the AI job market, based on the provided dataset.
+Data Overview
+The dataset contains 15,000 entries and 19 columns, with no missing or duplicate values. The data includes information on job titles, salaries, experience levels, company details, required skills, and more.
+Key Insights
+Top Trends
+•	Most Common Job Title: The most common AI job title is Machine Learning Researcher.
+•	Top Hiring Locations: Germany, Denmark, and France are the top three locations for AI jobs.
+•	Most In-Demand Skills: The most sought-after skills are Python, TensorFlow, and PyTorch.
+Salary Analysis 💵
+•	Average Salary: The average salary for AI roles is approximately $115,349.
+•	Salary by Experience:
+o	Entry-level: $63,133
+o	Mid-level: $87,955
+o	Senior-level: $122,187
+o	Executive-level: $187,723
+•	Salary by Company Size:
+o	Large companies: $130,322
+o	Medium companies: $113,600
+o	Small companies: $102,147
+Job Details 📝
+•	Job Types: The most common employment type is Full-time, followed by freelance, contract, and part-time.
+•	Remote Work: Approximately 32.8% of jobs are fully remote.
+•	Education: A Bachelor's degree is the most common educational requirement.
+Additional Findings
+•	Top Hiring Companies: The top companies hiring AI professionals include TechCorp Inc, Cognitive Computing, and AI Innovations.
+•	Job Description Length: The gaming industry has the longest average job descriptions, while China has the highest average job description length among all countries.
+•	Unique Job Combinations: There are 400 unique combinations of job titles and company locations.
+•	Benefits Score and Salary Correlation: There is a very weak positive correlation (0.00098) between the benefits score and salary.
+ 
 
